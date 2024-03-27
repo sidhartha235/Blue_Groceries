@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<meta charset="UTF-8">
+		<title>Blue Groceries</title>
+		<style>
+			body{
+				/* background-color: rgb(100, 170, 222); */
+				background-image: url("Images/signup.jpg");
+				background-size: cover;
+			}
+			h1{
+				text-align: center;
+				color: orangered;
+				font-size: 50px;
+				margin-bottom: 50px;
+			}
+			div{
+				font-size: 30px;
+				text-align: center;
+			}
+			input{
+				font-size: 35px;
+				background-color: gold;
+				color: black;
+			}
+			div.userSignIn{
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+			}
+			div.shopkeeperSignIn, div.buyerSignIn{
+				margin: 20px;
+				padding: 50px;
+				border: 7px double rebeccapurple;
+				width: 300px;
+				height: 220px;
+				font-size: 40px;
+				background-color: greenyellow;
+			}
+			img{
+				width: 400px;
+				height: 300px;
+				border: 3px solid;
+				margin: 25px;
+			}
+			div.newUserSignUp{
+				font-size: 20px;
+				margin-top: -30px;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
+	</head>
+	
+	<body>
+		
+		<h1> Welcome to Blue Groceries </h1>
+		
+		<br>
+		
+		<form method="post" action="SignIn.jsp">
+			<div class="userSignIn">				
+				<div class="shopkeeperSignIn">
+					<label for="shopkeeperSignInButton"> <i> for <br> <b> Shopkeeper </i></b> </label> <br> <br>
+					<input type="submit" name="shopkeeperSignInButton" id="shopkeeperSignInButton" value="Sign In">
+				</div>
+
+				<img src="Images/grocery.jpg" alt="Grocery Image">
+				
+				<div class="buyerSignIn">
+					<label for="buyerSignInButton"> <i> for <br> <b> Buyer </i></b> </label> <br> <br>
+					<input type="submit" name="buyerSignInButton" id="buyerSignInButton" value="Sign In">
+				</div>
+			</div>
+			
+			<div class="newUserSignUp">
+				<p style="color: gold;"> New Customer? <a href="UserRegistration.jsp" style="color: aqua;"> Start here.. </a> </p> 
+			</div>
+		</form>
+		
+	</body>
+	
+</html>

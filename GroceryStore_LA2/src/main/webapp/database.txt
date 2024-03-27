@@ -1,0 +1,97 @@
+mysqldump -u sidhartha -p GroceryStore > Gstore.sql
+
+mysql -u sidhartha -p -e "CREATE DATABASE AmazonGroceryStore"
+
+mysql -u sidhartha -p AmazonGroceryStore < Gstore.sql
+
+INSERT INTO User (Firstname, Lastname, Gender, Email, Password, UserType) VALUES ("Amazon", "Server", "O", "amazon@a2z.com", "AmazingAmazon", "Amazon");
+
+
+
+
+
+CREATE DATABASE IF NOT EXISTS GroceryStore;
+
+USE GroceryStore;
+
+
+CREATE TABLE IF NOT EXISTS User(
+    UserID INT NOT NULL AUTO_INCREMENT,
+    Firstname VARCHAR(30) NOT NULL,
+    Lastname VARCHAR(30),
+    Gender CHAR,
+    Email VARCHAR(320) NOT NULL,
+    Password VARCHAR(20) NOT NULL,
+    UserType ENUM("Buyer", "Shopkeeper", "Amazon") NOT NULL,
+    PRIMARY KEY (UserID),
+    UNIQUE (Email)
+);
+
+
+CREATE TABLE IF NOT EXISTS Buyer(
+    BuyerID INT NOT NULL AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    Mobile CHAR(10) NOT NULL,
+    Street VARCHAR(100) NOT NULL,
+    City VARCHAR(100) NOT NULL,
+    State VARCHAR(100) NOT NULL,
+    Pincode CHAR(6) NOT NULL,
+    PRIMARY KEY (BuyerID),
+    UNIQUE (UserID),
+    UNIQUE (Mobile),
+    FOREIGN KEY (UserID) REFERENCES User (UserID)
+);
+
+
+CREATE TABLE IF NOT EXISTS Shopkeeper(
+    ShopkeeperID INT NOT NULL AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    Mobile CHAR(10) NOT NULL,
+    StoreName VARCHAR(100) NOT NULL,
+    StoreLocation VARCHAR(200) NOT NULL,
+    PRIMARY KEY (ShopkeeperID),
+    UNIQUE (UserID),
+    UNIQUE (Mobile),
+    FOREIGN KEY (UserID) REFERENCES User (UserID)
+);
+
+
+CREATE TABLE IF NOT EXISTS Item(
+    ItemID INT NOT NULL AUTO_INCREMENT,
+    ItemName VARCHAR(100) NOT NULL,
+    ShopkeeperID INT NOT NULL,
+    Category VARCHAR(50),
+    Price DECIMAL(8,2) NOT NULL,
+    UnitQuantity VARCHAR(30) NOT NULL,
+    Stock INT DEFAULT 0,
+    Description VARCHAR(3000) DEFAULT "No description available.",
+    Image LONGBLOB NOT NULL,
+    PRIMARY KEY (ItemID),
+    FOREIGN KEY (ShopkeeperID) REFERENCES Shopkeeper (ShopkeeperID)
+);
+
+
+CREATE TABLE IF NOT EXISTS OrderedItem(
+	OrderID INT NOT NULL AUTO_INCREMENT,
+	BuyerID INT NOT NULL,
+	ShopkeeperID INT NOT NULL,
+	ItemID INT NOT NULL,
+	Quantity INT NOT NULL,
+	Cost DECIMAL(10,2) NOT NULL,
+	OrderDate DATE NOT NULL,
+	PRIMARY KEY (OrderID),
+	FOREIGN KEY (BuyerID) REFERENCES Buyer (BuyerID),
+	FOREIGN KEY (ShopkeeperID) REFERENCES Shopkeeper (ShopkeeperID),
+	FOREIGN KEY (ItemID) REFERENCES Item (ItemID)
+);
+
+
+CREATE TABLE IF NOT EXISTS Cart(
+	CartID INT NOT NULL AUTO_INCREMENT,
+	BuyerID INT NOT NULL,
+	ItemID INT NOT NULL,
+	Quantity INT NOT NULL,
+	PRIMARY KEY (CartID),
+	FOREIGN KEY (BuyerID) REFERENCES Buyer (BuyerID),
+	FOREIGN KEY (ItemID) REFERENCES Item (ItemID)
+);

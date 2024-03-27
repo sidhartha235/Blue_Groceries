@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Header | Blue Groceries</title>
+		<style>
+			div.header{
+				padding: 10px;
+				background-color: paleturquoise;
+				margin: -5px;
+				height: 40px;
+			}
+			hr{
+				border-color: turquoise;
+				margin: 0px;
+			}
+			div.leftHeader{
+				text-align: left;
+				margin: 0px;
+			}
+			div.rightHeader{
+				text-align: right;
+				margin: 0px;
+				margin-top: -30px;
+				font-size: 25px;
+			}
+			.search{
+				font-size: 25px;
+			}
+			#search{
+				background-color: antiquewhite;
+				color: darkslategrey;
+				pointer-events: none;
+			}
+			#homepageAnchor, #profileAnchor, #cartAnchor, #signOutAnchor{
+				color: black;
+				pointer-events: none;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
+	</head>
+	
+	<body>
+		<!-- <h1> BLUE GROCERIES </h1> -->
+		
+		<div class="header">
+			<div class="leftHeader">
+				<label class="search" for="search"> Search: </label> &nbsp;
+				<input class="search" type="search" name="search" id="search" placeholder="search here..">
+			</div>
+			<div class="rightHeader">
+				<a id="homepageAnchor" href="HomePage.jsp"> Home </a> &#x1F3E0; &nbsp; &nbsp; &nbsp;
+				<a id="profileAnchor" href="Profile.jsp"> Profile </a> &#x1F464; &nbsp; &nbsp; &nbsp;
+				<a id="cartAnchor" href="Cart.jsp"> Cart </a>  &#x1F6D2; &nbsp; &nbsp; &nbsp;
+				<a id="signOutAnchor" href="SignOut.jsp"> Sign Out </a>  &#x1F87D; &nbsp; &nbsp; &nbsp;
+			</div>
+			<hr>
+		</div>
+
+	</body>
+</html>
